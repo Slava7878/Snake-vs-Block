@@ -11,7 +11,7 @@ public class ProgressBar : MonoBehaviour
     public float AcceptableFinishPlayerDistance = 1f;
 
     private float _startZ;
-    private float _minimumReachedZ;
+    private float _maximumReachedZ;
 
     private void Start()
     {
@@ -20,9 +20,9 @@ public class ProgressBar : MonoBehaviour
 
     private void Update()
     {
-        _minimumReachedZ = Mathf.Max(_minimumReachedZ, Player.transform.position.z);        
+        _maximumReachedZ = Mathf.Max(_maximumReachedZ, Player.transform.position.z);        
         float finishZ = Finish.position.z;
-        float t = Mathf.InverseLerp(_startZ, finishZ - AcceptableFinishPlayerDistance, _minimumReachedZ);
+        float t = Mathf.InverseLerp(_startZ, finishZ - AcceptableFinishPlayerDistance, _maximumReachedZ);
         Slider.value = t;
     }
 }
