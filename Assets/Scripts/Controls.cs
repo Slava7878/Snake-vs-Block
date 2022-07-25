@@ -14,10 +14,11 @@ public class Controls : MonoBehaviour
 
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0))
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             initialPosition = transform.position;
             Vector3 rayPoint = ray.GetPoint(0);
             _distance = Vector3.Distance(transform.position, rayPoint);
@@ -25,6 +26,7 @@ public class Controls : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(_distance * Sensitivity);
             Player.MovePosition(initialPosition + new Vector3(rayPoint.x, 0, 0));
         }
