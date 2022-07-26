@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -11,14 +12,17 @@ public class LevelGenerator : MonoBehaviour
     public Transform FinishLine;
     public Transform GroundRoot;
     public float ExtraGroundScale;
+    public Game Game;
 
     private void Awake()
     {
-        int cubeLinesCount = Random.Range(MinCubeLines, MaxCubeLines + 1);
+        int levelIndex = Game.LevelIndex;
+        Random random = new Random(levelIndex);
+        int cubeLinesCount = RandomRange(random, MinCubeLines, MaxCubeLines + 1);
 
         for (int i = 0; i < cubeLinesCount; i++)
         {
-            int prefabIndex = Random.Range(0, CubeLinePrefabs.Length);
+            int prefabIndex = RandomRange(random, 0, CubeLinePrefabs.Length);
             GameObject cubeLine = Instantiate(CubeLinePrefabs[prefabIndex], transform);
             cubeLine.transform.localPosition = CalculateCubeLinePosition(i);
         }
@@ -26,6 +30,14 @@ public class LevelGenerator : MonoBehaviour
         FinishLine.localPosition = CalculateCubeLinePosition(cubeLinesCount);
 
         GroundRoot.localScale = new Vector3(1, 1, cubeLinesCount * DistanceBetweenCubeLines + ExtraGroundScale);
+    }
+
+    private int RandomRange(Random random, int min, int maxExclusive)
+    {
+        int number = random.Next();
+        int length = maxExclusive - min;
+        number %= length;
+        return min + number;
     }
 
     private Vector3 CalculateCubeLinePosition(int cubeLineIndex)
