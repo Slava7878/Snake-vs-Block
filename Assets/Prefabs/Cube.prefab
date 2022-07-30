@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebb134fad7225a4d93a9380547103e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubeHP: 2
+  CubeHP: 5
   TextCubeHP: {fileID: 6801798780010809721}
 --- !u!1 &6801798780010809719
 GameObject:

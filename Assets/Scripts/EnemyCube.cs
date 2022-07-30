@@ -8,29 +8,21 @@ public class EnemyCube : MonoBehaviour
     public int CubeHP;
     public TextMeshPro TextCubeHP;
 
-    // Start is called before the first frame update
+    Renderer rend;
+
     void Start()
     {
-        
+        rend = GetComponent<Renderer>();        
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         TextCubeHP.text = CubeHP.ToString();
-    }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.collider.TryGetComponent(out Player player))
-    //    {
-    //        LoseCubeHP();
-    //        player.LoseHP();
-    //    }
-    //}
+        rend.material.SetFloat("_EnemyHealth", CubeHP);
+    }    
 
     private void LoseCubeHP()
-    {
+    {        
         CubeHP--;
     }
 
@@ -42,6 +34,11 @@ public class EnemyCube : MonoBehaviour
             {
                 LoseCubeHP();
                 player.LoseHP();
+            }
+
+            if (CubeHP <= 0)
+            {
+                Destroy(gameObject);
             }
         }
     }
