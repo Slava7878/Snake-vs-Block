@@ -107,13 +107,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6963408288690542203}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &-3609804314331930458
 MonoBehaviour:
@@ -127,4 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90e8b9f0a269a642b0f2126cf974c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSpeed: 4
+  FollowSpeed: 2
+  Acceleration: 1

@@ -58,7 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b1266e47cd7e44bad5c111f686371e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoalObject: {fileID: 469062827008757483}
   Goal: {x: 0, y: 0, z: 0}
 --- !u!1 &680073432703500418
 GameObject:
@@ -445,7 +444,7 @@ MonoBehaviour:
   Speed: 3
   Game: {fileID: 0}
   TextHP: {fileID: 7260959034149946918}
-  PlayerHP: 10
+  PlayerHP: 4
 --- !u!54 &7260959034279586902
 Rigidbody:
   m_ObjectHideFlags: 0

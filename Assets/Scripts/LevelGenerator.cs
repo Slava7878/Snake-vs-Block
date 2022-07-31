@@ -11,8 +11,13 @@ public class LevelGenerator : MonoBehaviour
     public float DistanceBetweenCubeLines;
     public Transform FinishLine;
     public Transform GroundRoot;
-    public float ExtraGroundScale;
+    //public float ExtraGroundScale;
     public Game Game;
+
+    public GameObject[] FoodLinePrefabs;
+    public int MinFoodLines;
+    public int MaxFoodLines;
+    public float DistanceBetweenFoodLines;
 
     private void Awake()
     {
@@ -29,7 +34,16 @@ public class LevelGenerator : MonoBehaviour
 
         FinishLine.localPosition = CalculateCubeLinePosition(cubeLinesCount);
 
-        GroundRoot.localScale = new Vector3(1, 1, cubeLinesCount * DistanceBetweenCubeLines + ExtraGroundScale);
+        //GroundRoot.localScale = new Vector3(1, 1, cubeLinesCount * DistanceBetweenCubeLines + ExtraGroundScale);
+
+        int foodLinesCount = RandomRange(random, MinFoodLines, MaxFoodLines + 1);
+
+        for (int j = 0; j < foodLinesCount; j++)
+        {
+            int foodPrefabIndex = RandomRange(random, 0, FoodLinePrefabs.Length);
+            GameObject foodLine = Instantiate(FoodLinePrefabs[foodPrefabIndex], transform);
+            foodLine.transform.localPosition = CalculateFoodLinePosition(j);
+        }
     }
 
     private int RandomRange(Random random, int min, int maxExclusive)
@@ -43,5 +57,10 @@ public class LevelGenerator : MonoBehaviour
     private Vector3 CalculateCubeLinePosition(int cubeLineIndex)
     {
         return new Vector3(0, 0, DistanceBetweenCubeLines * cubeLineIndex);
+    }
+
+    private Vector3 CalculateFoodLinePosition(int foodLineIndex)
+    {
+        return new Vector3(0, 0, DistanceBetweenFoodLines * foodLineIndex);
     }
 }

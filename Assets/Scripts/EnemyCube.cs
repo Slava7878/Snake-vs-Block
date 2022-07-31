@@ -5,10 +5,18 @@ using TMPro;
 
 public class EnemyCube : MonoBehaviour
 {
-    public int CubeHP;
+    [SerializeField] private int _minCubeHP;
+    [SerializeField] private int _maxCubeHP;
+
+    private int _cubeHP;
     public TextMeshPro TextCubeHP;
 
     Renderer rend;
+
+    private void Awake()
+    {
+        _cubeHP = Random.Range(_minCubeHP, _maxCubeHP);
+    }
 
     void Start()
     {
@@ -17,13 +25,13 @@ public class EnemyCube : MonoBehaviour
     
     void Update()
     {
-        TextCubeHP.text = CubeHP.ToString();
-        rend.material.SetFloat("_EnemyHealth", CubeHP);
+        TextCubeHP.text = _cubeHP.ToString();
+        rend.material.SetFloat("_EnemyHealth", _cubeHP);
     }    
 
     private void LoseCubeHP()
     {        
-        CubeHP--;
+        _cubeHP--;
     }
 
     private void OnCollisionStay(Collision collision)
@@ -36,10 +44,10 @@ public class EnemyCube : MonoBehaviour
                 player.LoseHP();
             }
 
-            if (CubeHP <= 0)
+            if (_cubeHP <= 0)
             {
                 Destroy(gameObject);
             }
         }
-    }
+    }    
 }

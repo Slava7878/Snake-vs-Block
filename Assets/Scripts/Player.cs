@@ -10,7 +10,14 @@ public class Player : MonoBehaviour
     public float Speed;
     public Game Game;
     public TextMeshPro TextHP;
-    public int PlayerHP;    
+    public int PlayerHP;
+
+    TailPart tailPart;
+
+    void Start()
+    {
+        //tailPart = FindObjectOfType<TailPart>();
+    }
 
     public void ReachFinish()
     {
@@ -30,14 +37,20 @@ public class Player : MonoBehaviour
 
     public void LoseHP()
     {
-        Debug.Log("Losing HP");
-        Debug.Log(PlayerHP);
+        //Debug.Log("Losing HP");        
         PlayerHP--;
-        Debug.Log(PlayerHP);
+        tailPart.DestroyTail();
+
+
 
         if (PlayerHP <= 0)
             Die();
     }
+
+    //public void GetHP()
+    //{
+    //    PlayerHP += ;
+    //}
 
     public void Die()
     {
@@ -48,5 +61,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         TextHP.text = PlayerHP.ToString();
-    }    
+
+        tailPart = FindObjectOfType<TailPart>();
+    }
 }
