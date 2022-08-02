@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour
 {
     public Controls Controls;
+    public GameObject LoseScreen;
+    public GameObject WinScreen;
 
     public enum State
     {
@@ -22,9 +24,10 @@ public class Game : MonoBehaviour
         if (CurrentState != State.Playing) return;
 
         CurrentState = State.Loss;
-        Controls.enabled = false;
+        Controls.enabled = false;        
         Debug.Log("Game Over!");
-        ReloadLevel();
+        LoseScreen.SetActive(true);
+        //ReloadLevel();
     }
 
     public void OnPlayerReachedFinish()
@@ -35,7 +38,8 @@ public class Game : MonoBehaviour
         Controls.enabled = false;
         LevelIndex++;
         Debug.Log("You won!");
-        ReloadLevel();
+        WinScreen.SetActive(true);
+        //ReloadLevel();
     }
 
     public int LevelIndex

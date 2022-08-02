@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8999868ff0e9dad4c8632951fd069a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TailLength: 0
   TailPrefab: {fileID: 0}
   Player: {fileID: 0}
 --- !u!1 &7260959033461908763

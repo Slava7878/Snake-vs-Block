@@ -11,8 +11,11 @@ public class Controls : MonoBehaviour
 
     public Transform PlayerObj;
     public float Speed;
+    //public Rigidbody PlayerObj;
+    //public float ForwardSpeed;
+    //public float SideSpeed;
 
-    void Update()
+    void FixedUpdate()
     {
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -33,12 +36,50 @@ public class Controls : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            PlayerObj.position += -PlayerObj.right * (Time.deltaTime * Speed);
+            MoveToLeft();
+            //PlayerObj.position += -PlayerObj.right * (Time.deltaTime * Speed);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            PlayerObj.position += PlayerObj.right * (Time.deltaTime * Speed);
+            MoveToRight();
+            //PlayerObj.position += PlayerObj.right * (Time.deltaTime * Speed);
         }
-    }    
+    }
+
+    public void MoveToLeft()
+    {
+        PlayerObj.position += -PlayerObj.right * (Time.deltaTime * Speed);
+    }
+
+    public void MoveToRight()
+    {
+        PlayerObj.position += PlayerObj.right * (Time.deltaTime * Speed);
+    }
+
+    //void Start()
+    //{        
+    //    PlayerObj = GetComponent<Rigidbody>();
+    //}
+
+    //void FixedUpdate()
+    //{
+    //    Vector3 m_Input = new Vector3(0, 0, 1);
+    //    Vector3 left = new Vector3(-1, 0, 0);
+    //    Vector3 right = new Vector3(1, 0, 0);
+    //    //Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), 0, 3);        
+
+    //    //PlayerObj.MovePosition(transform.position + m_Input * Time.deltaTime);
+    //    PlayerObj.MovePosition(transform.position + m_Input * Time.deltaTime * ForwardSpeed);
+
+    //    if (Input.GetKey(KeyCode.A))
+    //    {
+    //        PlayerObj.MovePosition(transform.position + left * Time.deltaTime * SideSpeed);
+    //    }
+
+    //    if (Input.GetKey(KeyCode.D))
+    //    {
+    //        PlayerObj.MovePosition(transform.position + right * Time.deltaTime * SideSpeed);
+    //    }
+    //}
 }

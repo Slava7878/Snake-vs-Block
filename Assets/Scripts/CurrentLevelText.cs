@@ -9,6 +9,6 @@ public class CurrentLevelText : MonoBehaviour
     public Game Game;
     void Start()
     {
-        CurrentLevel.text = "Level " + (Game.LevelIndex + 1).ToString();
+        CurrentLevel.text = (Game.LevelIndex + 1).ToString();
     }
 }

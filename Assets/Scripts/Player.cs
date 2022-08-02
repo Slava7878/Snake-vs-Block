@@ -41,8 +41,6 @@ public class Player : MonoBehaviour
         PlayerHP--;
         tailPart.DestroyTail();
 
-
-
         if (PlayerHP <= 0)
             Die();
     }
