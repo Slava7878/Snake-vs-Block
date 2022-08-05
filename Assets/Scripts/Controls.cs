@@ -15,6 +15,9 @@ public class Controls : MonoBehaviour
     //public float ForwardSpeed;
     //public float SideSpeed;
 
+    public bool IsLeftPressed = false;
+    public bool IsRightPressed = false;
+
     void FixedUpdate()
     {
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -45,6 +48,22 @@ public class Controls : MonoBehaviour
             MoveToRight();
             //PlayerObj.position += PlayerObj.right * (Time.deltaTime * Speed);
         }
+
+        if (IsLeftPressed)
+        {
+            MoveToLeft();
+        }
+
+        else if (!IsLeftPressed)
+        {
+
+            //Your Code Here
+        }
+
+        if (IsRightPressed)
+        {
+            MoveToRight();
+        }
     }
 
     public void MoveToLeft()
@@ -55,6 +74,24 @@ public class Controls : MonoBehaviour
     public void MoveToRight()
     {
         PlayerObj.position += PlayerObj.right * (Time.deltaTime * Speed);
+    }
+
+    public void onPointerDownLeftButton()
+    {
+        IsLeftPressed = true;
+    }
+    public void onPointerUpLeftButton()
+    {
+        IsLeftPressed = false;
+    }
+
+    public void onPointerDownRightButton()
+    {
+        IsRightPressed = true;
+    }
+    public void onPointerUpRightButton()
+    {
+        IsRightPressed = false;
     }
 
     //void Start()

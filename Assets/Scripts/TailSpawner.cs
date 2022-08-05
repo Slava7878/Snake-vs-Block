@@ -7,7 +7,7 @@ public class TailSpawner : MonoBehaviour
     //public int TailLength;
     public GameObject TailPrefab;
     public Player Player;
-    private int _tailLength;
+    public int TailLength { get; set; }
 
 
     //void Start()
@@ -18,11 +18,16 @@ public class TailSpawner : MonoBehaviour
     void Update()
     {
         //TailLength = Player.PlayerHP;
-        if (_tailLength < Player.PlayerHP)
+        if (TailLength < Player.PlayerHP)
         {
             GameObject tail = Instantiate(TailPrefab, transform.position + new Vector3(0, 1, -1), Quaternion.identity);
-            _tailLength++;
+            TailLength++;
         }
+
+        //if (Player.PlayerHP == 1)
+        //{
+        //    _tailLength = 1;
+        //}
 
 
         //if (TailLength == Player.PlayerHP) return;

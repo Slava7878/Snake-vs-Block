@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     public TextMeshPro TextHP;
     public int PlayerHP;
 
+    [SerializeField] private ParticleSystem _bloodSplat;    
+
     TailPart tailPart;
+    [SerializeField] TailSpawner tailSpawner;
 
     void Start()
     {
@@ -37,12 +40,18 @@ public class Player : MonoBehaviour
 
     public void LoseHP()
     {
-        //Debug.Log("Losing HP");        
+        //Debug.Log("Losing HP");
+        _bloodSplat.Play();
+        
         PlayerHP--;
-        tailPart.DestroyTail();
+        tailSpawner.TailLength--;
 
         if (PlayerHP <= 0)
             Die();
+
+        tailPart.DestroyTail();
+
+        
     }
 
     //public void GetHP()

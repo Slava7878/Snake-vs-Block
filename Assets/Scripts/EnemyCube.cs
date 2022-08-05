@@ -11,7 +11,7 @@ public class EnemyCube : MonoBehaviour
     private int _cubeHP;
     public TextMeshPro TextCubeHP;
 
-    Renderer rend;
+    Renderer rend;    
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class EnemyCube : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         if (collision.collider.TryGetComponent(out Player player))
-        {            
+        {
             if (player.PlayerHP >= 0)
             {
                 LoseCubeHP();
@@ -45,9 +45,11 @@ public class EnemyCube : MonoBehaviour
             }
 
             if (_cubeHP <= 0)
-            {
+            {                
                 Destroy(gameObject);
             }
         }
-    }    
+    }
+
+    
 }
