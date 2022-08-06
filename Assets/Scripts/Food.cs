@@ -31,6 +31,7 @@ public class Food : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Player player))
         {
+            player.GetFood();
             player.PlayerHP += _foodAmount;
             _foodAmount = 0;
 

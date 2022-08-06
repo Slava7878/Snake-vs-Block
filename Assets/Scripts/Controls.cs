@@ -5,7 +5,7 @@ using UnityEngine;
 public class Controls : MonoBehaviour
 {
     //public Rigidbody Player;
-    //public float Sensitivity;
+    public float Sensitivity;
     //Vector3 initialPosition;
     //private float _distance;
 
@@ -14,6 +14,7 @@ public class Controls : MonoBehaviour
     //public Rigidbody PlayerObj;
     //public float ForwardSpeed;
     //public float SideSpeed;
+    //private float? lastMousePoint = null;
 
     public bool IsLeftPressed = false;
     public bool IsRightPressed = false;
@@ -64,6 +65,41 @@ public class Controls : MonoBehaviour
         {
             MoveToRight();
         }
+
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    float sideMovement = Input.GetAxis("Mouse X") * Speed;
+        //    sideMovement *= Time.deltaTime;
+        //    transform.Translate(sideMovement, 0, 0);
+        //}
+
+        //if (Input.GetAxis("Mouse X") < 0)
+        //{
+        //    float sideMovement = Input.GetAxis("Mouse X") * Speed * Time.deltaTime;
+        //    transform.Translate(-sideMovement, 0, 0);
+        //}
+        //else if (Input.GetAxis("Mouse X") > 0)
+        //{
+        //    float sideMovement = Input.GetAxis("Mouse X") * Speed * Time.deltaTime;
+        //    transform.Translate(sideMovement, 0, 0);
+        //}
+
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    lastMousePoint = Input.mousePosition.x;
+        //}
+        //else if (Input.GetMouseButtonUp(0))
+        //{
+        //    lastMousePoint = null;
+        //}
+        //if (lastMousePoint != null)
+        //{
+        //    float difference = Input.mousePosition.x - lastMousePoint.Value;
+        //    transform.position = new Vector3(transform.position.x + difference * Time.deltaTime, 0, 0);
+        //    lastMousePoint = Input.mousePosition.x;
+        //}
+
+        
     }
 
     public void MoveToLeft()
@@ -92,6 +128,28 @@ public class Controls : MonoBehaviour
     public void onPointerUpRightButton()
     {
         IsRightPressed = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            float mouseAxis = Input.GetAxis("Mouse X");
+            if (mouseAxis < 0)
+                MouseMoveToLeft();
+            if (mouseAxis > 0)
+                MouseMoveToRight();
+        }
+    }
+
+    public void MouseMoveToLeft()
+    {
+        PlayerObj.position += -PlayerObj.right * (Time.deltaTime * Speed * Sensitivity);
+    }
+
+    public void MouseMoveToRight()
+    {
+        PlayerObj.position += PlayerObj.right * (Time.deltaTime * Speed * Sensitivity);
     }
 
     //void Start()

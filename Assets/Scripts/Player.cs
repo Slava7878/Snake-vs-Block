@@ -14,12 +14,18 @@ public class Player : MonoBehaviour
 
     [SerializeField] private ParticleSystem _bloodSplat;    
 
-    TailPart tailPart;
+    //TailPart tailPart;
     [SerializeField] TailSpawner tailSpawner;
+    private AudioSource _splashSound;
+
+    public AudioClip FoodSound;
+    [Min(0)]
+    public float Volume;
 
     void Start()
     {
         //tailPart = FindObjectOfType<TailPart>();
+        _splashSound = GetComponent<AudioSource>();
     }
 
     public void ReachFinish()
@@ -41,23 +47,27 @@ public class Player : MonoBehaviour
     public void LoseHP()
     {
         //Debug.Log("Losing HP");
+        //AudioSource splashSound = GetComponent<AudioSource>();
+        _splashSound.Play();
+
         _bloodSplat.Play();
         
-        PlayerHP--;
-        tailSpawner.TailLength--;
+        if (PlayerHP > 0)
+        {
+            PlayerHP--;
+            tailSpawner.LoseTail();            
+        }
 
-        if (PlayerHP <= 0)
+        if (PlayerHP == 0)
             Die();
 
-        tailPart.DestroyTail();
-
-        
+        //tailPart.DestroyTail();        
     }
 
-    //public void GetHP()
-    //{
-    //    PlayerHP += ;
-    //}
+    public void GetFood()
+    {
+        _splashSound.PlayOneShot(FoodSound, Volume);
+    }
 
     public void Die()
     {
@@ -69,6 +79,6 @@ public class Player : MonoBehaviour
     {
         TextHP.text = PlayerHP.ToString();
 
-        tailPart = FindObjectOfType<TailPart>();
+        //tailPart = FindObjectOfType<TailPart>();
     }
 }

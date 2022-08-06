@@ -38,7 +38,7 @@ public class EnemyCube : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out Player player))
         {
-            if (player.PlayerHP >= 0)
+            if (player.PlayerHP > 0)
             {
                 LoseCubeHP();
                 player.LoseHP();

@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     public Controls Controls;
     public GameObject LoseScreen;
     public GameObject WinScreen;
+    public TailSpawner TailSpawner;
 
     public enum State
     {
@@ -36,6 +37,7 @@ public class Game : MonoBehaviour
 
         CurrentState = State.Won;
         Controls.enabled = false;
+        TailSpawner.enabled = false;
         LevelIndex++;
         Debug.Log("You won!");
         WinScreen.SetActive(true);
