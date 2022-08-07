@@ -1,67 +1,60 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody Rigidbody;
-    public float Speed;
-    public Game Game;
-    public TextMeshPro TextHP;
-    public int PlayerHP;
+    [SerializeField] private Rigidbody _playerRigidbody;
+    [SerializeField] private float _speed;
+    [SerializeField] private Game _game;    
 
+    [SerializeField] private TextMeshPro _textHP;
     [SerializeField] private ParticleSystem _bloodSplat;    
-
-    //TailPart tailPart;
     [SerializeField] TailSpawner tailSpawner;
+    [SerializeField] Score score;
+
     private AudioSource _splashSound;
+
+    public int PlayerHP;
 
     public AudioClip FoodSound;
     [Min(0)]
     public float Volume;
 
     void Start()
-    {
-        //tailPart = FindObjectOfType<TailPart>();
+    {        
         _splashSound = GetComponent<AudioSource>();
     }
 
     public void ReachFinish()
     {
-        Game.OnPlayerReachedFinish();
-        Rigidbody.velocity = Vector3.zero;
-    }    
+        _game.OnPlayerReachedFinish();
+        _playerRigidbody.velocity = Vector3.zero;
+    }
 
     void FixedUpdate()
-    {        
+    {
         AlwaysMoveForward();
     }
 
     private void AlwaysMoveForward()
     {
-        Rigidbody.velocity = new Vector3(0, 0, Speed);
+        _playerRigidbody.velocity = new Vector3(0, 0, _speed);
     }
 
     public void LoseHP()
-    {
-        //Debug.Log("Losing HP");
-        //AudioSource splashSound = GetComponent<AudioSource>();
+    {        
         _splashSound.Play();
-
         _bloodSplat.Play();
         
         if (PlayerHP > 0)
         {
             PlayerHP--;
-            tailSpawner.LoseTail();            
+            score.AddScore();
+            tailSpawner.LoseTail();
         }
 
         if (PlayerHP == 0)
-            Die();
-
-        //tailPart.DestroyTail();        
+            Die();                
     }
 
     public void GetFood()
@@ -71,14 +64,12 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        Game.OnPlayerDied();
-        Rigidbody.velocity = Vector3.zero;
+        _game.OnPlayerDied();
+        _playerRigidbody.velocity = Vector3.zero;
     }
 
     void Update()
     {
-        TextHP.text = PlayerHP.ToString();
-
-        //tailPart = FindObjectOfType<TailPart>();
+        _textHP.text = PlayerHP.ToString();        
     }
 }

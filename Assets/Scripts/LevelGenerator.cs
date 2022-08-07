@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
@@ -12,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
 
     public Transform FinishLine;
     public Transform GroundRoot;
-    //public float ExtraGroundScale;
+    public float ExtraGroundScale;
     public Game Game;
 
     public GameObject[] FoodLinePrefabs;
@@ -41,7 +39,7 @@ public class LevelGenerator : MonoBehaviour
 
         FinishLine.localPosition = CalculateCubeLinePosition(cubeLinesCount);
 
-        //GroundRoot.localScale = new Vector3(1, 1, cubeLinesCount * DistanceBetweenCubeLines + ExtraGroundScale);
+        GroundRoot.localScale = new Vector3(1, 1, cubeLinesCount * DistanceBetweenCubeLines + ExtraGroundScale);
 
         int foodLinesCount = RandomRange(random, MinFoodLines, MaxFoodLines + 1);
 

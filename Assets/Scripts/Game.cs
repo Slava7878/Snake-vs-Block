@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +6,7 @@ public class Game : MonoBehaviour
     public Controls Controls;
     public GameObject LoseScreen;
     public GameObject WinScreen;
+    public GameObject ControlButtons;
     public TailSpawner TailSpawner;
 
     public enum State
@@ -28,7 +26,7 @@ public class Game : MonoBehaviour
         Controls.enabled = false;        
         Debug.Log("Game Over!");
         LoseScreen.SetActive(true);
-        //ReloadLevel();
+        ControlButtons.SetActive(false);
     }
 
     public void OnPlayerReachedFinish()
@@ -41,7 +39,7 @@ public class Game : MonoBehaviour
         LevelIndex++;
         Debug.Log("You won!");
         WinScreen.SetActive(true);
-        //ReloadLevel();
+        ControlButtons.SetActive(false);
     }
 
     public int LevelIndex

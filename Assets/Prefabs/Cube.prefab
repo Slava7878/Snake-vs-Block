@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minCubeHP: 1
   _maxCubeHP: 20
-  TextCubeHP: {fileID: 6801798780010809721}
+  _textCubeHP: {fileID: 6801798780010809721}
 --- !u!1 &6801798780010809719
 GameObject:
   m_ObjectHideFlags: 0

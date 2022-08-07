@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -9,9 +7,9 @@ public class EnemyCube : MonoBehaviour
     [SerializeField] private int _maxCubeHP;
 
     private int _cubeHP;
-    public TextMeshPro TextCubeHP;
+    [SerializeField] private TextMeshPro _textCubeHP;
 
-    Renderer rend;    
+    Renderer rend;
 
     private void Awake()
     {
@@ -20,17 +18,17 @@ public class EnemyCube : MonoBehaviour
 
     void Start()
     {
-        rend = GetComponent<Renderer>();        
+        rend = GetComponent<Renderer>();
     }
     
     void Update()
     {
-        TextCubeHP.text = _cubeHP.ToString();
+        _textCubeHP.text = _cubeHP.ToString();
         rend.material.SetFloat("_EnemyHealth", _cubeHP);
-    }    
+    }
 
     private void LoseCubeHP()
-    {        
+    {
         _cubeHP--;
     }
 
@@ -45,11 +43,9 @@ public class EnemyCube : MonoBehaviour
             }
 
             if (_cubeHP <= 0)
-            {                
+            {
                 Destroy(gameObject);
             }
         }
-    }
-
-    
+    }    
 }

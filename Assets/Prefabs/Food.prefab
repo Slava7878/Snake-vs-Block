@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minFoodAmount: 1
-  _maxFoodAmount: 5
-  TextFoodAmount: {fileID: 3581377194756392569}
+  _maxFoodAmount: 4
+  _textFoodAmount: {fileID: 3581377194756392569}
 --- !u!1 &3581377194756392550
 GameObject:
   m_ObjectHideFlags: 0

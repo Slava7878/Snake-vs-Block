@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -7,10 +5,8 @@ public class Food : MonoBehaviour
 {
     [SerializeField] private int _minFoodAmount;
     [SerializeField] private int _maxFoodAmount;
-
-    private int _foodAmount;
-
-    public TextMeshPro TextFoodAmount;
+    [SerializeField] private TextMeshPro _textFoodAmount;
+    private int _foodAmount;    
 
     private void Awake()
     {
@@ -19,13 +15,8 @@ public class Food : MonoBehaviour
 
     void Start()
     {
-        
-    }
-    
-    void Update()
-    {
-        TextFoodAmount.text = _foodAmount.ToString();
-    }
+        _textFoodAmount.text = _foodAmount.ToString();
+    }    
 
     private void OnCollisionEnter(Collision collision)
     {

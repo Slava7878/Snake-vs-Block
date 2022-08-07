@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CurrentLevelText : MonoBehaviour
 {
-    public Text CurrentLevel;
-    public Game Game;
+    [SerializeField] private TextMeshProUGUI _currentLevel;
+    [SerializeField] private Game _game;
+
     void Start()
     {
-        CurrentLevel.text = (Game.LevelIndex + 1).ToString();
+        _currentLevel.text = (_game.LevelIndex + 1).ToString();
     }
 }
