@@ -23,8 +23,7 @@ public class Game : MonoBehaviour
         if (CurrentState != State.Playing) return;
 
         CurrentState = State.Loss;
-        Controls.enabled = false;
-        TailSpawner.enabled = false;
+        Controls.enabled = false;        
         Debug.Log("Game Over!");
         LoseScreen.SetActive(true);
         ControlButtons.SetActive(false);
