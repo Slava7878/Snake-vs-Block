@@ -8,10 +8,10 @@ public class Controls : MonoBehaviour
     public Transform PlayerObj;        
 
     public bool IsLeftPressed = false;
-    public bool IsRightPressed = false;
+    public bool IsRightPressed = false;    
 
     void FixedUpdate()
-    {        
+    {
         if (Input.GetKey(KeyCode.A))
         {
             MoveToLeft();            
@@ -30,7 +30,16 @@ public class Controls : MonoBehaviour
         if (IsRightPressed)
         {
             MoveToRight();
-        }        
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            float mouseAxis = Input.GetAxis("Mouse X");
+            if (mouseAxis < 0)
+                MouseMoveToLeft();
+            if (mouseAxis > 0)
+                MouseMoveToRight();
+        }
     }
 
     public void MoveToLeft()
@@ -71,17 +80,5 @@ public class Controls : MonoBehaviour
     public void MouseMoveToRight()
     {
         PlayerObj.position += PlayerObj.right * (Time.deltaTime * _sensitivity);
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            float mouseAxis = Input.GetAxis("Mouse X");
-            if (mouseAxis < 0)
-                MouseMoveToLeft();
-            if (mouseAxis > 0)
-                MouseMoveToRight();
-        }
-    }
+    }    
 }

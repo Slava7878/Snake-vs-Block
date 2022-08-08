@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] Score score;
 
     private AudioSource _splashSound;
+    private bool _isAlive = true;
 
     public int PlayerHP;
 
@@ -33,7 +34,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        AlwaysMoveForward();
+        if (_isAlive)
+            AlwaysMoveForward();
     }
 
     private void AlwaysMoveForward()
@@ -64,8 +66,9 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        _game.OnPlayerDied();
+        _isAlive = false;
         _playerRigidbody.velocity = Vector3.zero;
+        _game.OnPlayerDied();        
     }
 
     void Update()
